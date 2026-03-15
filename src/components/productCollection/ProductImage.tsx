@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Typography } from "antd";
-
+import { useNavigate, Link } from "react-router-dom";
 interface PropsType {
   id: string | number;
   size: "large" | "small";
@@ -9,15 +9,16 @@ interface PropsType {
   title: string;
 }
 
-export const ProductImage = ({
+const ProductImageComponent = ({
   id,
   size,
   imageSrc,
   price,
   title,
 }: PropsType) => {
+  const navigate = useNavigate();
   return (
-    <>
+    <Link to={`/detail/${id}`} style={{ cursor: "pointer" }}>
       {size === "large" ? (
         <Image src={imageSrc} height={285} width={490} />
       ) : (
@@ -27,6 +28,8 @@ export const ProductImage = ({
       <Typography.Text type="danger" strong>
         ¥ {price} 起
       </Typography.Text>
-    </>
+    </Link>
   );
 };
+
+export const ProductImage = ProductImageComponent;

@@ -16,7 +16,7 @@ export const ProductCollection = ({
 }: PropsType) => {
   return (
     <div className={styles.content}>
-      <Divider orientation={"left" as any}>{title}</Divider>
+      <Divider titlePlacement="left">{title}</Divider>
       <Row>
         <Col span={4}>
           <img src={sideImage} className={styles["side-image"]} alt="" />

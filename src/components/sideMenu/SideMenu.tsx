@@ -6,19 +6,22 @@ import { Menu } from "antd";
 
 export const SideMenu = () => {
   return (
-    <Menu mode="vertical" className={styles["side-menu"]}>
-      {sideMenuList.map((sm, index) => (
-        <Menu.SubMenu title={sm.title} key={`side-menu-${index}`}>
-          {sm.subMenu.map((sms, smsindex) => (
-            <Menu.Item key={`sub-sub-menu-${smsindex}`}>
-              <span>
-                <GifOutlined />
-              </span>
-            </Menu.Item>
-          ))}
-        </Menu.SubMenu>
-      ))}
-    </Menu>
+    <Menu
+      mode="vertical"
+      className={styles["side-menu"]}
+      items={sideMenuList.map((sm, index) => ({
+        label: sm.title,
+        key: `side-menu-${index}`,
+        children: sm.subMenu.map((sms, smsindex) => ({
+          label: (
+            <span>
+              <GifOutlined />
+              {sms.title}
+            </span>
+          ),
+            key: `sub-menu-${index}-${smsindex}`,
+        })),
+      }))}
+    />
   );
 };
-

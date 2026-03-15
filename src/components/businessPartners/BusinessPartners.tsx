@@ -17,7 +17,7 @@ const companies = [
 export const BusinessPartners = () => {
   return (
     <div className={styles.content}>
-      <Divider orientation={"left" as any}>
+      <Divider titlePlacement="left">
         <Typography.Title level={3}>合作企业</Typography.Title>
       </Divider>
       <Row>
