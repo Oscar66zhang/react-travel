@@ -38,7 +38,7 @@ function App() {
 
         <ProductCollection
           title={
-            <Typography.Title level={3} type="warning">
+            <Typography.Title level={3} type="danger">
               新上产品
             </Typography.Title>
           }
