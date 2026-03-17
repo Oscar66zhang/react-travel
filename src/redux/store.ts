@@ -4,6 +4,7 @@ import languageReducer from "./languageReducer";
 const store = configureStore({
     reducer: {
         language: languageReducer,
+        
     }
 })
 

@@ -11,6 +11,8 @@ import {
   Location,
   Params,
 } from "react-router-dom";
+import store from "../../redux/store";
+import { LanguageState } from "../../redux/languageReducer";
 
 interface RouterProps {
   navigate: NavigateFunction;
@@ -36,7 +38,17 @@ function withRouter<P extends object>(
   };
 }
 
-class Header extends React.Component<RouterProps> {
+interface State extends LanguageState {}
+
+class HeaderComponnet extends React.Component<RouterProps, State> {
+  constructor(props: RouterProps) {
+    super(props);
+    const storeState = store.getState();
+    this.state = {
+      language: storeState.language.language,
+      languageList: storeState.language.languageList,
+    };
+  }
   render() {
     const { navigate } = this.props;
     return (
@@ -61,7 +73,7 @@ class Header extends React.Component<RouterProps> {
                   }}
                   icon={<GlobalOutlined />}
                 >
-                  语言
+                  {this.state.language === "zh" ? "中文" : "English"}
                 </Button>
               </Dropdown>
             </Space>
@@ -82,7 +94,7 @@ class Header extends React.Component<RouterProps> {
             className={styles["search-input"]}
             placeholder="请输入旅游目的地、主题或关键字"
           />
-        </Layout.Header> 
+        </Layout.Header>
         <Menu
           mode="horizontal"
           className={styles["main-menu"]}
@@ -108,4 +120,4 @@ class Header extends React.Component<RouterProps> {
   }
 }
 
-export default withRouter(Header);
+export const Header = withRouter(HeaderComponnet);
